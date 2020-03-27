@@ -1,0 +1,74 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: reveal-js-docker-example
+spec:
+  selector:
+    app: reveal-js-docker-example
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: ClusterIP
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: reveal-js-docker-example
+  annotations:
+    seccomp.security.alpha.kubernetes.io/pod: runtime/default
+spec:
+  selector:
+    matchLabels:
+      app: reveal-js-docker-example
+  template:
+    metadata:
+      labels:
+        app: reveal-js-docker-example
+      annotations:
+        kubernetes.io/change-cause: $IMAGE_NAME
+    spec:
+      enableServiceLinks: false
+      automountServiceAccountToken: false
+      containers:
+        - name: reveal-js-docker-example
+          image: $IMAGE_NAME
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 100000
+            runAsGroup: 100000
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: 100m
+              memory: 64Mi
+            requests:
+              cpu: 10m
+              memory: 64Mi
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: tmp
+          emptyDir: {}
+---
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: reveal-js-docker-example
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+    - host: reveal-js-docker-example.cloudogu.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: reveal-js-docker-example
+              servicePort: 80
