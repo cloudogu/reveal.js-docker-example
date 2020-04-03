@@ -4,7 +4,7 @@
 to cloudogu/reveal.js-docker
 
 <font color="black">
-    Version: 202003271746-9d89d51
+    Version: 202004031131-b21c3c6
 </font>
 
 

@@ -53,7 +53,7 @@ function main() {
 <script>
 	const showNotesForPrinting = false;
 
-	evaluateExcludeLocation();
+	evaluateInAndExcludeLocations();
 	const showNotes = showNotesForPrinting && window.location.search.startsWith('?print-pdf') ? "separate-page" : undefined;
 	// More info about config & dependencies:
 	// - https://github.com/hakimel/reveal.js#configuration
@@ -107,10 +107,19 @@ function main() {
 		}
 		console.log(`Set presenter mode: ${storage.getItem(storageKey)}`);
 	}
-
-	function evaluateExcludeLocation() {
+	
+	function relativeUrl() {
+		return window.location.pathname + window.location.search
+	}
+	
+	function evaluateInAndExcludeLocations() {
 		document.querySelectorAll('section[excludeLocation]').forEach(element => {
-			if (window.location.search.startsWith(element.getAttribute('excludeLocation'))) {
+			if (relativeUrl().match(new RegExp(element.getAttribute('excludeLocation'), 'gi'))) {
+				element.remove()
+			}});
+
+		document.querySelectorAll('section[includeLocation]').forEach(element => {
+			if (!relativeUrl().match(new RegExp(element.getAttribute('includeLocation'), 'gi'))) {
 				element.remove()
 			}})
 	}
