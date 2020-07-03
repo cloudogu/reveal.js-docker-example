@@ -1,10 +1,10 @@
 <!-- .slide: class="title"  -->
-<!-- .slide: data-background-image="css/images/title.svg"  -->
+<!-- .slide: data-background-image="dist/theme/images/title.svg"  -->
 # Welcome 
 to cloudogu/reveal.js-docker
 
 <font color="black">
-    Version: 202006301322-ea48867
+    Version: 202007031326-6df7767
 </font>
 
 
