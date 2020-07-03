@@ -34,7 +34,7 @@ node('docker') {
     String mavenSiteUrl = "https://ecosystem.cloudogu.com/nexus/content/sites/Cloudogu-Docs"
 
     // Used for PDF printing
-    headlessChromeVersion = 'yukinying/chrome-headless-browser:82.0.4068.4'
+    headlessChromeVersion = 'yukinying/chrome-headless-browser:85.0.4181.8'
     String mavenVersion = "3.6.2-jdk-8"
     
     Git git = new Git(this, ghPageCredentials)
@@ -169,9 +169,9 @@ void printPdfAndPackageWebapp(def image, String pdfName, String distPath) {
                 // Chromium writes to $HOME/local, so we need an entry in /etc/pwd for the current user
                 .mountJenkinsUser()
                 // Try to avoid OOM for larger presentations by setting larger shared memory
-                .inside("--shm-size=2G") {
-                    // If more flags should ever be neccessary: https://peter.sh/experiments/chromium-command-line-switches
-                    sh "/usr/bin/google-chrome-unstable --headless --no-sandbox --disable-gpu --print-to-pdf='${distPath}/${pdfName}' " +
+                .inside("--shm-size=4G") {
+                    // If more flags should ever be necessary: https://peter.sh/experiments/chromium-command-line-switches
+                    sh "/usr/bin/google-chrome-unstable --headless --no-sandbox --disable-gpu --disable-web-security --print-to-pdf='${distPath}/${pdfName}' " +
                             "http://${revealIp}:8080/?print-pdf"
                 }
     }
