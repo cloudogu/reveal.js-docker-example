@@ -1,4 +1,4 @@
-FROM cloudogu/reveal.js:3.9.2-r8 as base
+FROM cloudogu/reveal.js:4.0.2-r1 as base
 
 FROM base as aggregator
 ENV TITLE='Cloudogu - reveal.js-docker' 
