@@ -4,11 +4,10 @@
     <span class="title-accent">//</span> 
     Welcome
 </h2>
+
 to cloudogu/reveal.js-docker
 
-<font color="black">
-    Version: 202007081502-e15b4f3
-</font>
+Version: 202007081508-018cef8
 
 
 
