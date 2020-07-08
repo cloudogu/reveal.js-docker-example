@@ -17,6 +17,9 @@ Provides
   the browser):
   * Start with `./startPresentation.sh`  
   * Presentation is served at http://localhost:8000
+  * Linux users can avoid port conflicts (e.g. with multiple presentations running) by using  
+    `./startPresentation.sh internal`  
+    which results in no port bindings to localhost. Instead the internal IP of the docker container is used
 * a [`Dockerfile`](Dockerfile) that creates an image containing a web-server that serves the presentation as a
   completely static website:  
   * Build with `docker build -t presentation`
