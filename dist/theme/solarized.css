@@ -287,3 +287,17 @@ html * {
 @media print {
   .backgrounds {
     background-color: #fdf6e3; } }
+
+/*********************************************
+ * CLOUDOGU EXTENSIONS
+ *********************************************/
+.reveal .footer {
+  position: absolute;
+  bottom: 1em;
+  left: 1em; }
+
+.reveal section img.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0 .05em 0 .1em;
+  vertical-align: -0.1em; }
