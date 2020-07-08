@@ -48,3 +48,18 @@ Link to [previous slide](#font) (by id)
 
 <!-- .slide: data-state="black-gradient" -->
 Nice gradient! 
+
+
+
+<!-- .slide: data-auto-animate  -->
+<h1 style="margin-top: 100px;">Auto</h1>
+<h1 style="opacity: 0;">Animate</h1>
+<p style="opacity: 0;"></p>
+
+
+
+<!-- .slide: data-auto-animate  -->
+<h1>Auto</h1>
+<h1>Animate</h1>
+<p> you can transition things like position, font-size, line-height, color, background-color, padding and margin.<br/>
+See <a href="https://revealjs.com/auto-animate/">docs</a>.</p>
