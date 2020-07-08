@@ -33,8 +33,8 @@ node('docker') {
     String mavenArtifactId = "reveal.js-docker-example"
     String mavenSiteUrl = "https://ecosystem.cloudogu.com/nexus/content/sites/Cloudogu-Docs"
 
-    // Used for PDF printing
-    headlessChromeVersion = 'yukinying/chrome-headless-browser:85.0.4181.8'
+    // Used for PDF printing - latest version does not have a docker tag (commit: 9edd0d3, pupeteer: 3.3.0)
+    headlessChromeImage = 'buildkite/puppeteer@sha256:a23da563975ab5e9a50567ba5bf754b56ab288a18b206d45105c6782e9421b70'
     String mavenVersion = "3.6.2-jdk-8"
     
     Git git = new Git(this, ghPageCredentials)
@@ -116,7 +116,7 @@ node('docker') {
     mailIfStatusChanged(git.commitAuthorEmail)
 }
 
-String headlessChromeVersion
+String headlessChromeImage
 
 String createPdfName(boolean includeDate = true) {
     String title = sh (returnStdout: true, script: 'grep -r \'TITLE\' Dockerfile | sed "s/.*TITLE=\'\\(.*\\)\'.*/\\1/" ').trim()
@@ -158,21 +158,15 @@ void printPdfAndPackageWebapp(def image, String pdfName, String distPath) {
         sh "docker cp ${revealContainer.id}:/reveal '${distPath}'"
 
         def revealIp = docker.findIp(revealContainer)
-        if (!revealIp || !waitForWebserver("http://${revealIp}:8080")) {
-            echo "Warning: Couldn't deploy reveal presentation for PDF printing. "
-            echo "Docker log:"
-            echo new Sh(this).returnStdOut("docker logs ${revealContainer.id}")
-            error "PDF creation failed"
-        }
-
-        docker.image(headlessChromeVersion)
+        
+        docker.image(headlessChromeImage)
                 // Chromium writes to $HOME/local, so we need an entry in /etc/pwd for the current user
                 .mountJenkinsUser()
                 // Try to avoid OOM for larger presentations by setting larger shared memory
                 .inside("--shm-size=4G") {
-                    // If more flags should ever be necessary: https://peter.sh/experiments/chromium-command-line-switches
-                    sh "/usr/bin/google-chrome-unstable --headless --no-sandbox --disable-gpu --disable-web-security --print-to-pdf='${distPath}/${pdfName}' " +
-                            "http://${revealIp}:8080/?print-pdf"
+                    // --no-optional -> Don't install chrome, it's already inside the image
+                    sh 'npm install --no-optional puppeteer-cli'
+                    sh "wait-for-it.sh ${revealIp}:8080 -- node_modules/.bin/puppeteer --sandbox=false print http://${revealIp}:8080/?print-pdf '${distPath}/${pdfName}'"
                 }
     }
 }
@@ -210,11 +204,4 @@ String filterFile(String filePath, String expression, String replace) {
     sh "test -e ${filePath} || (echo Title slide ${filePath} not found && return 1)"
     sh "cat ${filePath} | sed 's/${expression}/${replace}/g' > ${filteredFilePath}"
     return filteredFilePath
-}
-
-boolean waitForWebserver(String url) {
-    echo "Waiting for website to become ready at ${url}"
-    // Output to stdout and discard (O- >/dev/null) because we don't want the file we only want to know if it's available
-    int ret = sh (returnStatus: true, script: "wget -O- --retry-connrefused --tries=30 -q --wait=1 ${url} &> /dev/null")
-    return ret == 0
 }
