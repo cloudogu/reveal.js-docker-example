@@ -7,8 +7,10 @@ echo "Starting presentation on localhost:8000"
 
 CONTAINER=$(docker run --rm --detach \
     -v $(pwd)/docs/slides:/reveal/docs/slides \
+    -v $(pwd)/images:/reveal/images \
     -v $(pwd)/resources:/resources \
     -e TITLE="$(grep -r 'TITLE' Dockerfile | sed "s/.*TITLE='\(.*\)'.*/\1/")" \
+    -e THEME_CSS="$(grep -r 'THEME_CSS' Dockerfile | sed "s/.*THEME_CSS='\(.*\)'.*/\1/")" \
     -p 8000:8000 -p 35729:35729 \
     cloudogu/reveal.js:$(head -n1 Dockerfile | sed 's/.*:\([^ ]*\) .*/\1/')-dev)
 

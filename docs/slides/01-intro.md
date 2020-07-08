@@ -1,11 +1,15 @@
 <!-- .slide: class="title"  -->
-<!-- .slide: data-background-image="dist/theme/images/title.svg"  -->
-# Welcome 
+<!-- .slide: data-background-image="images/title.svg"  -->
+<h2>
+    <span class="title-accent">//</span> 
+    Welcome
+</h2>
+
 to cloudogu/reveal.js-docker
 
-<font color="black">
-    <!--VERSION-->
-</font>
+<div class="title-version">
+<!--VERSION-->
+</div>
 
 
 
