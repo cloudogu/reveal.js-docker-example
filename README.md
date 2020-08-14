@@ -13,13 +13,18 @@ Evolution of [cloudogu/continuous-delivery-slides](https://github.com/cloudogu/c
 Provides
 
 * [example slides](docs/slides) in markdown, showcasing the features (see [rendered version](https://cloudogu.github.io/reveal.js-docker-example)),
-* a [script](startPresentation.sh) to start slide Development mode (changes on the slides lead to automatic reloads in
-  the browser):
-  * Start with `./startPresentation.sh`  
+* scripts [linux](startPresentation.sh) / [windows](startPresentation.ps1) to start slide Development mode (changes on 
+  the slides lead to automatic reloads in the browser):
+  * Start with 
+    * Linux: `./startPresentation.sh`
+    * Windows: Right Click on `startPresentation.ps1` then `Run with PowerShell`.
   * Presentation is served at http://localhost:8000
+  * This fails if either one of the port `8000` or `35729` is already blocked.
+  * You can stop the presentation container by finding the `CONTAINER_ID` using `docker ps`,
+    then `docker rm -f <CONTAINER_ID`.
   * Linux users can avoid port conflicts (e.g. with multiple presentations running) by using  
     `./startPresentation.sh internal`  
-    which results in no port bindings to localhost. Instead the internal IP of the docker container is used
+    which results in no port bindings to localhost. Instead, the internal IP of the docker container is used
 * a [`Dockerfile`](Dockerfile) that creates an image containing a web-server that serves the presentation as a
   completely static website:  
   * Build with `docker build -t presentation`
