@@ -33,8 +33,7 @@ node('docker') {
     String mavenArtifactId = "reveal.js-docker-example"
     String mavenSiteUrl = "https://ecosystem.cloudogu.com/nexus/content/sites/Cloudogu-Docs"
 
-    // Used for PDF printing - latest version does not have a docker tag (commit: 9edd0d3, pupeteer: 3.3.0)
-    headlessChromeImage = 'buildkite/puppeteer@sha256:a23da563975ab5e9a50567ba5bf754b56ab288a18b206d45105c6782e9421b70'
+    headlessChromeImage = 'buildkite/puppeteer:5.2.1'
     String mavenVersion = "3.6.2-jdk-8"
     
     Git git = new Git(this, ghPageCredentials)
