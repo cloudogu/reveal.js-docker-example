@@ -32,6 +32,7 @@ Provides
   * Presentation is served at http://localhost:8080
   * For demo purposes have a look at the Image built by this repo:  
     `docker run --rm -p 8080:8080 cloudogu/reveal.js-example` 
+* a [script for printing pdf locally](printPdf.sh)
 * [Kubernetes Resources](k8s.yaml) for running the Docker Image on K8s securely
 * a [maven POM](pom.xml) for deploying the presentation as a maven site into a Raw Nexus Repository and finally 
 * a [Jenkins continuous delivery pipeline](Jenkinsfile) that showcases how to deploy 
