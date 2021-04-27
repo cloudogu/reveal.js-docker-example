@@ -1,6 +1,9 @@
 ## Separate files are placed to the right
 
-Don't forget to add the markdown to `index.html`!
+The order is sorted alphabetically, by default. 
+You can customize this by creating a `slides.html`!
+
+
 
 ### Images
 
@@ -37,17 +40,12 @@ The image bellow is loaded lazily
 
 Link to [previous slide](#font) (by id)
 
+
+
 ### Video
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4ht22ReBjno" allow="encrypted-media" allowfullscreen></iframe>
-
-
-
-### Different css on `document` of the slide
-
-<!-- .slide: data-state="black-gradient" -->
-Nice gradient! 
 
 
 
