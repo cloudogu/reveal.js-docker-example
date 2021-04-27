@@ -51,7 +51,16 @@ Nice gradient!
 
 
 
-<!-- .slide: data-auto-animate  -->
+<!-- .slide: data-visibility="hidden"  id="hidden" -->
+This slide is hidden
+
+
+
+<p class="r-fit-text">This text fits the slide</p>
+
+
+
+<!-- .slide: data-auto-animate id="animate" -->
 <h1 style="margin-top: 100px;">Auto</h1>
 <h1 style="opacity: 0;">Animate</h1>
 <p style="opacity: 0;"></p>
