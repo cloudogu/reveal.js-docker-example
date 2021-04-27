@@ -1,6 +1,9 @@
 ## Separate files are placed to the right
 
-Don't forget to add the markdown to `index.html`!
+The order is sorted alphabetically, by default. 
+You can customize this by creating a `slides.html`!
+
+
 
 ### Images
 
@@ -37,6 +40,8 @@ The image bellow is loaded lazily
 
 Link to [previous slide](#font) (by id)
 
+
+
 ### Video
 
 
@@ -44,14 +49,16 @@ Link to [previous slide](#font) (by id)
 
 
 
-### Different css on `document` of the slide
-
-<!-- .slide: data-state="black-gradient" -->
-Nice gradient! 
+<!-- .slide: data-visibility="hidden"  id="hidden" -->
+This slide is hidden
 
 
 
-<!-- .slide: data-auto-animate  -->
+<p class="r-fit-text">This text fits the slide</p>
+
+
+
+<!-- .slide: data-auto-animate id="animate" -->
 <h1 style="margin-top: 100px;">Auto</h1>
 <h1 style="opacity: 0;">Animate</h1>
 <p style="opacity: 0;"></p>

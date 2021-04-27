@@ -8,7 +8,7 @@
 to cloudogu/reveal.js-docker
 
 <div class="title-version">
-Version: 202010291638-bfb563b
+Version: 202104272319-1ba6d69
 </div>
 
 
@@ -22,6 +22,7 @@ Write your slides in [GitHub-flavored markdown](https://guides.github.com/featur
 <h2 class="state-background">PDF Version <a href="pdf/Cloudogu%20-%20reveal.js-docker.pdf">
    <i class="far fa-file-pdf"></i>
 </a></h2>
+
 
 
 ## Hotkeys
