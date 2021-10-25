@@ -7,7 +7,7 @@ USER root
 # Remove demo slides before templating
 RUN rm -rf  /reveal/docs
 COPY . /reveal
-RUN mv /reveal/resources/ /
+RUN if [ -d /reveal/resources/ ]; then mv /reveal/resources/ /; fi
 RUN /scripts/templateIndexHtml
 
 FROM base
