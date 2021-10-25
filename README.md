@@ -63,7 +63,18 @@ The workflow with a Cloudogu Ecosystem and GitHub are shown bellow.
 |--------------------|----------|
 |[![Workflow with Cloudogu Ecosystem](http://www.plantuml.com/plantuml/svg/ZP1VQzim5CMVfqznc-t1WpX-3QM4bjIKDOazvWRsLbpfrj6YFqPNsbR6llkaLbd3nbZyO0xd_93EqINvtlcW5JiJ-2WDmdBTRg_Rc-tsqnfstezqNbMk_pORfD-5Xq3ek3KUZPzngokkR11s2DMeUfFEAGzEIQEJ7gdIFNbqx4mQheB0uDJn7HMtMbip6rE7Vp7fFAg-eDbBGwUWXnAdiCJrIPZ6Vh3g5DJWz_2VcjvQHTL-dZ7MM84mMURQK7DBJ-HHJw0du4XmSV7kC6gnW1_iJJhf_hPkLX-QhiXFCuNR5_4UtZu-VvdhbfiYxfn25EMcD_s0xYzcKr_TjEiY3utiY_YJQ-hFswvutZXjqlyL-CdONTkkxrVpheZRfh0A3-WCUZo2s1Ntre70hwZiY8wntnBASW7vVZY7IIsaXqv9WJHX1pyXNCVuOw0TYp8v-G6YU-VaCA1ZsKbXwfgYQnoLVNfDOhIV7mNi4eq8Mlq2)](http://www.plantuml.com/plantuml/uml/ZP1VQzim5CMVfqznc-t1WpX-3QM4bjIKDOazvWRsLbpfrj6YFqPNsbR6llkaLbd3nbZyO0xd_93EqINvtlcW5JiJ-2WDmdBTRg_Rc-tsqnfstezqNbMk_pORfD-5Xq3ek3KUZPzngokkR11s2DMeUfFEAGzEIQEJ7gdIFNbqx4mQheB0uDJn7HMtMbip6rE7Vp7fFAg-eDbBGwUWXnAdiCJrIPZ6Vh3g5DJWz_2VcjvQHTL-dZ7MM84mMURQK7DBJ-HHJw0du4XmSV7kC6gnW1_iJJhf_hPkLX-QhiXFCuNR5_4UtZu-VvdhbfiYxfn25EMcD_s0xYzcKr_TjEiY3utiY_YJQ-hFswvutZXjqlyL-CdONTkkxrVpheZRfh0A3-WCUZo2s1Ntre70hwZiY8wntnBASW7vVZY7IIsaXqv9WJHX1pyXNCVuOw0TYp8v-G6YU-VaCA1ZsKbXwfgYQnoLVNfDOhIV7mNi4eq8Mlq2) | [![Worflow with GitHub](http://www.plantuml.com/plantuml/svg/dPDlJren5CPVhv_YY7l14k7gJ0mnXgY8JZ5S9v8iMPQRSdkyTFIsT_qZCyk--tfBnyLiCsHzGKgVNv_dz70uDPPgwqf1TXW-Seamk4sd5-dLT7f_2tDhAtES99ekkmMtSpTp1dMkf4LfkxagarmenrJXaafGMVjqVfzqJAMvHPEKr5ZKXEnmcGl7q6cn6PBKi4c-ebnmQRgLztWTNMTkmvgyt0ehaHPAR8DA_ExCww1LIfXaqOlOkhNNWtIyNLkjgoZJXqrNkLSxZvvOj_NfeBlVtNzHG_HFl4EfP0Z_gyxmgVOpoIeyeyB-6mwXT8b6bLXVoCmtHpLkUM795xn2nccstFB6JAb5x1inVYGggca9L6krX1y4OA24qh2x7nRvkGb9nJ0mvpHV55evoIBz_f0UCbOhIZFKyVJWwAZNywSlNMXkbVuV6xXKqlvHthWkgZM8Cml3N9bdOx5i0L03EHeuENcRHxdVzy5lwZdAReRZqVLuqev_Z3suMMtUmUvZM94R3pzD9-qmbNlZ-hC1VBeCwLVSVd2pLXrOpA4ER7vv7ndvyERBi-pg-Y6RV9oUtG_RnLnZfVQ20zpxRQjn3-nvceuyLT42VOan2Exghn6DXP27DBtDHhr9Uz7pvCZDK4kqQ1gAh3hlfnE5gb2JLJfqFiyvOoY_z24c4HAx0fq-XAV3CLnW9THpetZ9HpK2MHi7BPeVGsl8k8M9uCpN73C34Pqyyg1vKQ3UJ8sLUF7EcJavHSbSANu1)](http://www.plantuml.com/plantuml/uml/dPDlJren5CPVhv_YY7l14k7gJ0mnXgY8JZ5S9v8iMPQRSdkyTFIsT_qZCyk--tfBnyLiCsHzGKgVNv_dz70uDPPgwqf1TXW-Seamk4sd5-dLT7f_2tDhAtES99ekkmMtSpTp1dMkf4LfkxagarmenrJXaafGMVjqVfzqJAMvHPEKr5ZKXEnmcGl7q6cn6PBKi4c-ebnmQRgLztWTNMTkmvgyt0ehaHPAR8DA_ExCww1LIfXaqOlOkhNNWtIyNLkjgoZJXqrNkLSxZvvOj_NfeBlVtNzHG_HFl4EfP0Z_gyxmgVOpoIeyeyB-6mwXT8b6bLXVoCmtHpLkUM795xn2nccstFB6JAb5x1inVYGggca9L6krX1y4OA24qh2x7nRvkGb9nJ0mvpHV55evoIBz_f0UCbOhIZFKyVJWwAZNywSlNMXkbVuV6xXKqlvHthWkgZM8Cml3N9bdOx5i0L03EHeuENcRHxdVzy5lwZdAReRZqVLuqev_Z3suMMtUmUvZM94R3pzD9-qmbNlZ-hC1VBeCwLVSVd2pLXrOpA4ER7vv7ndvyERBi-pg-Y6RV9oUtG_RnLnZfVQ20zpxRQjn3-nvceuyLT42VOan2Exghn6DXP27DBtDHhr9Uz7pvCZDK4kqQ1gAh3hlfnE5gb2JLJfqFiyvOoY_z24c4HAx0fq-XAV3CLnW9THpetZ9HpK2MHi7BPeVGsl8k8M9uCpN73C34Pqyyg1vKQ3UJ8sLUF7EcJavHSbSANu1)   |
 
-# Build
+# Customize theme
+
+* Import an existing theme, e.g. from [reveal.js-docker](https://github.com/cloudogu/reveal.js-docker/tree/master/dist/theme) 
+  ```shell
+  mkdir -p dist/theme 
+  wget https://raw.githubusercontent.com/cloudogu/reveal.js-docker/master/dist/theme/cloudogu-black.css --directory-prefix dist/theme
+  ```
+* Make sure to set the `ENV THEME_CSS=...` line in [Dockerfile](Dockerfile) to the file name of your theme.  
+* Customize the theme in in your dist repo
+* The theme is automatically picked up when running `startPresentation.sh` and `docker build`
+
+# Jenkins Build
 
 See [`Jenkinsfile`](Jenkinsfile).
 

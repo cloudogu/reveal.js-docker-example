@@ -14,7 +14,10 @@ if [[ "${ARGUMENT}" == "internal" ]]; then
     DOCKER_ARGS=""
 fi
 
+# shellcheck disable=SC2046
+# Quoting leads to '' which in turn leads to failing docker command
 CONTAINER_ID=$(docker run  --detach \
+    $([[ -d $(pwd)/dist/theme ]] && echo "-v $(pwd)/dist/theme:/reveal/dist/theme") \
     -v $(pwd)/docs/slides:/reveal/docs/slides \
     -v $(pwd)/images:/reveal/images \
     -v $(pwd)/resources:/resources \
