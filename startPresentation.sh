@@ -16,9 +16,10 @@ fi
 
 # shellcheck disable=SC2046
 # Quoting leads to '' which in turn leads to failing docker command
+# For dist/theme: Don't mount whole folder to not overwrite other files in folder (fonts, images, etc.)
 CONTAINER_ID=$(docker run  --detach \
     $([[ -d $(pwd)/docs/slides ]] && echo "-v $(pwd)/docs/slides:/reveal/docs/slides") \
-    $([[ -d $(pwd)/dist/theme ]] && echo "-v $(pwd)/dist/theme:/reveal/dist/theme") \
+    $([[ -d $(pwd)/dist/theme ]] && for f in dist/theme/*.css; do echo "-v $(pwd)/${f}:/reveal/${f}"; done) \
     $([[ -d $(pwd)/images ]] && echo "-v $(pwd)/images:/reveal/images") \
     $([[ -d  $(pwd)/resources ]] && echo "-v $(pwd)/resources:/resources") \
     -e TITLE="$(grep -r 'TITLE' Dockerfile | sed "s/.*TITLE='\(.*\)'.*/\1/")" \
