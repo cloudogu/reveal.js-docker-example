@@ -18,12 +18,15 @@ fi
 # Quoting leads to '' which in turn leads to failing docker command
 # For dist/theme: Don't mount whole folder to not overwrite other files in folder (fonts, images, etc.)
 CONTAINER_ID=$(docker run  --detach \
-    $([[ -d $(pwd)/docs/slides ]] && echo "-v $(pwd)/docs/slides:/reveal/docs/slides") \
-    $([[ -d $(pwd)/dist/theme ]] && for f in dist/theme/*.css; do echo "-v $(pwd)/${f}:/reveal/${f}"; done) \
-    $([[ -d $(pwd)/images ]] && echo "-v $(pwd)/images:/reveal/images") \
-    $([[ -d  $(pwd)/resources ]] && echo "-v $(pwd)/resources:/resources") \
+    $([[ -d docs/slides ]] && echo "-v $(pwd)/docs/slides:/reveal/docs/slides") \
+    $([[ -d dist/theme ]] && for f in dist/theme/*.css; do echo "-v $(pwd)/${f}:/reveal/${f}"; done) \
+    $([[ -d images ]] && echo "-v $(pwd)/images:/reveal/images") \
+    $([[ -d resources ]] && echo "-v $(pwd)/resources:/resources") \
+    $([[ -d plugin ]] && for dir in plugin/*/; do echo "-v $(pwd)/${dir}:/reveal/${dir}"; done) \
     -e TITLE="$(grep -r 'TITLE' Dockerfile | sed "s/.*TITLE='\(.*\)'.*/\1/")" \
     -e THEME_CSS="$(grep -r 'THEME_CSS' Dockerfile | sed "s/.*THEME_CSS='\(.*\)'.*/\1/")" \
+    -e ADDITIONAL_PLUGINS="$(grep -r 'ADDITIONAL_PLUGINS' Dockerfile | sed "s/.*ADDITIONAL_PLUGINS='\(.*\)'.*/\1/")" \
+    -e ADDITIONAL_SCRIPT="$(grep -r 'ADDITIONAL_SCRIPT' Dockerfile | sed "s/.*ADDITIONAL_SCRIPT='\(.*\)'.*/\1/")" \
     ${DOCKER_ARGS} \
    cloudogu/reveal.js:$(head -n1 Dockerfile | sed 's/.*:\([^ ]*\) .*/\1/')-dev)
 

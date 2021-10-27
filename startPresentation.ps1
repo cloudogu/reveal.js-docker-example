@@ -3,8 +3,10 @@ $theme=(sls 'THEME_CSS' Dockerfile) -replace ".*THEME_CSS='(.*)'.*", "`$1"
 $imageVersion=(sls 'FROM cloudogu/reveal.js' Dockerfile) -replace ".*:([^ ]*) .*", "`$1"
 
 # TODO stop container before running, in order to allow convenient "restart"?
+# TODO add support for plugins: ADDITIONAL_PLUGINS; ADDITIONAL_SCRIPT; $([[ -d plugin ]] && for dir in plugin/*/; do echo "-v $(pwd)/${dir}:/reveal/${dir}"; done) \
 # TODO how to implement sub shell in PS? -> 
-# Check if folders exist before mounting, e.g. $([[ -d $(pwd)/dist/theme ]] && echo "-v $(pwd)/dist/theme:/reveal/dist/theme") 
+# Check if folders exist before mounting, e.g. $([[ -d $(pwd)/dist/theme ]] && echo "-v $(pwd)/dist/theme:/reveal/dist/theme")
+
 docker run `
     -v ${PWD}/docs/slides:/reveal/docs/slides  `
     -v ${PWD}/images:/reveal/images  `
