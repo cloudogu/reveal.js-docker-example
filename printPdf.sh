@@ -1,3 +1,8 @@
+#!/usr/bin/env bash
+
+# When updating, also update in Jenkinsfile. Or use this script in Jenkins
+HEADLESS_CHROME_IMAGE='yukinying/chrome-headless-browser:96.0.4662.6'
+
 docker build -t reveal .
 
 container=$(docker run --rm -d reveal)
@@ -8,7 +13,7 @@ sleep 1
 
 rm "${pdf}" || true
 
-docker run -v /tmp:/tmp -u "$(id -u)" --entrypoint= -it --shm-size=4G yukinying/chrome-headless-browser:85.0.4181.8 \
+docker run -v /tmp:/tmp -u "$(id -u)" --entrypoint= -it --shm-size=4G ${HEADLESS_CHROME_IMAGE} \
   /usr/bin/google-chrome-unstable --headless --no-sandbox --disable-gpu --print-to-pdf="${pdf}" "http://${address}:8080/?print-pdf"
 
 ls -lah "${pdf}"

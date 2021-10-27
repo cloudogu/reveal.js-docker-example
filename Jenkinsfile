@@ -33,7 +33,8 @@ node('docker') {
     String mavenArtifactId = "reveal.js-docker-example"
     String mavenSiteUrl = "https://ecosystem.cloudogu.com/nexus/content/sites/Cloudogu-Docs"
 
-    headlessChromeImage = 'yukinying/chrome-headless-browser:92.0.4484.7'
+    // When updating, also update printPdf.sh
+    headlessChromeImage = 'yukinying/chrome-headless-browser:96.0.4662.6'
     String mavenVersion = "3.6.2-jdk-8"
     
     Git git = new Git(this, ghPageCredentials)
