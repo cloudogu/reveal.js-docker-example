@@ -23,19 +23,24 @@ node('docker') {
 
     def introSlidePath = 'docs/slides/01-intro.md'
 
-    String dockerRegistry = ""
-    String imageBaseName = "cloudogu/reveal.js-example"
-    String dockerRegistryCredentials = 'hub.docker.com-cesmarvin'
-    String ghPageCredentials = 'cesmarvin'
-    String kubeconfigCredentials = 'kubeconfig-oss-deployer'
+    // Build image versions
+    // When updating, also update printPdf.sh
+    headlessChromeImage = 'yukinying/chrome-headless-browser:96.0.4662.6'
+    String mavenVersion = "3.8.3-openjdk-17-slim"
     
+    // Params for Nexus deployment
     String mavenGroupId = "com.cloudogu.slides"
     String mavenArtifactId = "reveal.js-docker-example"
     String mavenSiteUrl = "https://ecosystem.cloudogu.com/nexus/content/sites/Cloudogu-Docs"
-
-    // When updating, also update printPdf.sh
-    headlessChromeImage = 'yukinying/chrome-headless-browser:96.0.4662.6'
-    String mavenVersion = "3.6.2-jdk-8"
+    
+    String imageBaseName = "cloudogu/reveal.js-example"
+    // Params for Kubernetes deployment
+    String dockerRegistry = ""
+    String dockerRegistryCredentials = 'hub.docker.com-cesmarvin'
+    String kubeconfigCredentials = 'kubeconfig-oss-deployer'
+    
+    // Params for GitHub pages deployment
+    String ghPageCredentials = 'cesmarvin'
     
     Git git = new Git(this, ghPageCredentials)
     Docker docker = new Docker(this)
