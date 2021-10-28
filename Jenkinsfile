@@ -52,7 +52,7 @@ node('docker') {
 
         String versionName = createVersion(mvn)
         String imageName = "${imageBaseName}:${versionName}"
-        String packagePath = 'dist'
+        String packagePath = 'target'
         forceDeployGhPages = Boolean.valueOf(params.forceDeployGhPages)
         def image
 
@@ -155,7 +155,7 @@ void printPdfAndPackageWebapp(def image, String pdfName, String distPath) {
     image.withRun("-v ${WORKSPACE}:/workspace -w /workspace") { revealContainer ->
 
         // Extract rendered reveal webapp from container for further processing
-        sh "docker cp ${revealContainer.id}:/reveal '${distPath}/'"
+        sh "docker cp ${revealContainer.id}:/reveal '${distPath}'"
 
         def revealIp = docker.findIp(revealContainer)
 
