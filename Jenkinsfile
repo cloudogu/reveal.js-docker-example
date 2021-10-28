@@ -1,7 +1,7 @@
 #!groovy
 
 //Keep this version in sync with the one used in Maven.pom-->
-@Library('github.com/cloudogu/ces-build-lib@1.35.1')
+@Library('github.com/cloudogu/ces-build-lib@1.48.0')
 import com.cloudogu.ces.cesbuildlib.*
 
 node('docker') {
