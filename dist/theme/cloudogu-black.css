@@ -246,9 +246,6 @@ li::before {content: "•"; color:#23A3DD;
 .reveal small * {
   vertical-align: top; }
 
-.reveal img {
-  margin: 20px 0; }
-
 /*********************************************
  * LINKS
  *********************************************/
@@ -369,4 +366,12 @@ html.print-pdf .printOnly {
   position: absolute;
   bottom: 1em;
   left: 1em;
+}
+
+.container {
+  display: flex;
+}
+
+.column {
+  flex: 1;
 }

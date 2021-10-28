@@ -8,7 +8,7 @@
 to cloudogu/reveal.js-docker
 
 <div class="title-version">
-Version: 202110271132-71bb164
+Version: 202110280958-7615e6e
 </div>
 
 
@@ -75,3 +75,16 @@ String hello = "world";
  
 Quotes: 
 > A container image is a lightweight, stand-alone, executable package of a piece of software that includes everything needed to run it: code, runtime, system tools, system libraries, settings.
+
+
+
+## Column layouts
+
+<div class="container">
+  <div class="column">
+  Column 1
+  </div>
+  <div class="column">
+  Column 2
+  </div>
+</div>

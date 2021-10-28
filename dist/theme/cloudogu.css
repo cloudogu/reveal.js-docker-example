@@ -157,13 +157,9 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   margin-left: 40px; }
 
 .reveal blockquote {
-  display: block;
-  position: relative;
-  width: 70%;
-  margin: 20px auto;
-  padding: 5px;
-  font-style: italic;
-  background: rgba(255, 255, 255, 0.05);
+  border-left: 5px solid #1B7DAA;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); }
 
 .reveal blockquote p:first-child,
@@ -238,9 +234,6 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 
 .reveal small * {
   vertical-align: top; }
-
-.reveal img {
-  margin: 20px 0; }
 
 /*********************************************
  * LINKS
@@ -360,4 +353,12 @@ html.print-pdf .printOnly {
   position: absolute;
   bottom: 1em;
   left: 1em;
+}
+
+.container {
+  display: flex;
+}
+
+.column {
+  flex: 1;
 }
