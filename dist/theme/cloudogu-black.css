@@ -196,7 +196,13 @@ li::before {content: "•"; color:#23A3DD;
 
 .reveal code {
   font-family: monospace;
-  text-transform: none; }
+  text-transform: none;
+}
+
+.reveal code:not(.hljs):not(.hljs-attr) {
+  background: #808080;
+  border-radius: 5px;
+}
 
 .reveal pre code {
   display: block;

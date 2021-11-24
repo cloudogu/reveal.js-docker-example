@@ -183,7 +183,13 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 
 .reveal code {
   font-family: monospace;
-  text-transform: none; }
+  text-transform: none;
+}
+
+.reveal code:not(.hljs):not(.hljs-attr) {
+  background: #F6F6F6;
+  border-radius: 5px;
+}
 
 .reveal pre code {
   display: block;
