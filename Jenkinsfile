@@ -170,7 +170,8 @@ void printPdfAndPackageWebapp(def image, String pdfName, String distPath) {
         // Try to avoid OOM for larger presentations by setting larger shared memory
                 .inside("--shm-size=4G") {
                     // If more flags should ever be necessary: https://peter.sh/experiments/chromium-command-line-switches
-                    sh "/usr/bin/google-chrome-unstable --headless --no-sandbox --disable-gpu --disable-web-security --print-to-pdf='${distPath}/${pdfName}' " +
+                    sh "/usr/bin/google-chrome-unstable --headless --no-sandbox --disable-gpu --disable-web-security " +
+                            "--print-to-pdf='${distPath}/${pdfName}' --run-all-compositor-stages-before-draw --virtual-time-budget=10000 " +
                             "http://${revealIp}:8080/?print-pdf"
                 }
     }

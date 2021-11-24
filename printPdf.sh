@@ -13,8 +13,10 @@ sleep 1
 
 rm "${pdf}" || true
 
+set -x
 docker run -v /tmp:/tmp -u "$(id -u)" --entrypoint= -it --shm-size=4G ${HEADLESS_CHROME_IMAGE} \
-  /usr/bin/google-chrome-unstable --headless --no-sandbox --disable-gpu --print-to-pdf="${pdf}" "http://${address}:8080/?print-pdf"
+  /usr/bin/google-chrome-unstable --headless --no-sandbox --disable-gpu --print-to-pdf="${pdf}" --run-all-compositor-stages-before-draw  --virtual-time-budget=10000 \
+  "http://${address}:8080/?print-pdf" 
 
 ls -lah "${pdf}"
 
