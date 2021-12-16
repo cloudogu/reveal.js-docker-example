@@ -48,8 +48,8 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <generatedSiteDirectory>dist/</generatedSiteDirectory>
-                    <inputDirectory>dist/</inputDirectory>
+                    <generatedSiteDirectory>target/</generatedSiteDirectory>
+                    <inputDirectory>target/</inputDirectory>
                 </configuration>
             </plugin>
         </plugins>
