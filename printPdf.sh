@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -o errexit -o nounset -o pipefail
+
 # When updating, also update in Jenkinsfile. Or use this script in Jenkins
 HEADLESS_CHROME_IMAGE='yukinying/chrome-headless-browser:96.0.4662.6'
 
