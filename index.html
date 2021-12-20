@@ -64,11 +64,6 @@ function main() {
 					pdfSeparateFragments : false,
 					// Use the default (h.v), because the printed version will always have this anyway
 					slideNumber: 'true',
-					// Support for presenters - press comma to toggle presenterMode mode, i.e. ⬅/➡️ keys map to
-					// prev/next slide, instead of left/right
-					keyboard: {
-						188: () => setPresenterMode(true)
-					},
 					showNotes: showNotes,
 					// Learn about plugins: https://revealjs.com/plugins/
 					plugins: [ 
@@ -86,9 +81,24 @@ function main() {
 					],
 					
 				});
-			
-				setPresenterMode(false);
-			
+
+				setPresenterMode(false); // Disable presentation remote mode by default
+				setWarpMenu(false); // Show warp menu by default
+
+				Reveal.addKeyBinding( { keyCode: 188, key: ',', description: 'Toggle mapping ⬅/➡️ keys to prev/next slide, instead of left/right.' },
+						() => {
+					// Support for presentation remotes - press comma to toggle presenterMode mode, i.e. ⬅/➡️ keys map to
+					// prev/next slide, instead of left/right
+					setPresenterMode(true)
+				} )
+				
+				Reveal.addKeyBinding( { keyCode: 87, key: 'w' },
+						() => {
+					// Cloudogu Ecosystem: Toggle Warp menu by pressing 'w'
+					// As this is an edge case, dont add to description
+					setWarpMenu(true)
+				} )
+	
 				function setPresenterMode(toggle) {
 					const storage = localStorage;
 					const storageKey = 'presenterMode';
@@ -102,6 +112,23 @@ function main() {
 					} else {
 						Reveal.removeKeyBinding(37);
 						Reveal.removeKeyBinding(39);
+					}
+					console.log(`Set presenter mode: ${storage.getItem(storageKey)}`);
+				}
+				
+				function setWarpMenu(toggle) {
+					if (!document.getElementById("warp-menu-container")) return
+					
+					const storage = localStorage;
+					const storageKey = 'hideWarpMenu';
+					if (toggle) {
+						storage.setItem(storageKey, JSON.stringify(!JSON.parse(storage.getItem(storageKey))));
+					}
+					const hideWarpMenu = JSON.parse(storage.getItem(storageKey));
+					if (hideWarpMenu) {
+						document.getElementById("warp-menu-container").style.display = 'none'
+					} else {
+						document.getElementById("warp-menu-container").style.display = ''
 					}
 					console.log(`Set presenter mode: ${storage.getItem(storageKey)}`);
 				}
