@@ -94,7 +94,7 @@ node('docker') {
 
         stage('Deploy Nexus') {
             if (params.deployToNexus) {
-                mvn.useDeploymentRepository([
+                mvn.useRepositoryCredentials([
                         // Must match the one in pom.xml!
                         id           : 'ecosystem.cloudogu.com',
                         credentialsId: 'ces-nexus'
