@@ -17,7 +17,7 @@ node('docker') {
                     booleanParam(name: 'deployToK8s', defaultValue: false,
                             description: 'Deploys to Kubernetes. We deploy to GitHub pages, so skip deploying to k8s by default.'),
                     booleanParam(defaultValue: false, name: 'forceDeployGhPages',
-                            description: 'GH Pages are deployed on Master Branch only. If this box is checked it\'s deployed no what Branch is built.')
+                            description: 'GH Pages are deployed on main Branch only. If this box is checked it\'s deployed no what Branch is built.')
             ])
     ])
 
@@ -85,10 +85,10 @@ node('docker') {
 
         stage('Deploy GH Pages') {
 
-            if (env.BRANCH_NAME == 'master' || forceDeployGhPages) {
+            if (env.BRANCH_NAME == 'main' || forceDeployGhPages) {
                 git.pushGitHubPagesBranch(packagePath, versionName)
             } else {
-                echo "Skipping deploy to GH pages, because not on master branch"
+                echo "Skipping deploy to GH pages, because not on main branch"
             }
         }
 
@@ -137,7 +137,7 @@ String createVersion(Maven mvn) {
     // E.g. "201708140933-1674930"
     String versionName = "${new Date().format('yyyyMMddHHmm')}-${new Git(this).commitHashShort}"
 
-    if (env.BRANCH_NAME == "master") {
+    if (env.BRANCH_NAME == "main") {
         mvn.additionalArgs = "-Drevision=${versionName} "
         currentBuild.description = versionName
         echo "Building version $versionName on branch ${env.BRANCH_NAME}"
