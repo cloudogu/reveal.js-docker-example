@@ -8,7 +8,7 @@
 to cloudogu/reveal.js-docker
 
 <div class="title-version">
-Version: 202112201541-6a73275
+Version: 202112211441-acac4c5
 </div>
 
 
