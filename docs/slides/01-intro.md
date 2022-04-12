@@ -8,7 +8,7 @@
 to cloudogu/reveal.js-docker
 
 <div class="title-version">
-Version: 202112211524-a81b2c6
+Version: 202204121045-1d01183
 </div>
 
 
@@ -43,7 +43,7 @@ Note:
 
 ### Bellow (separated by three empty lines)
 
-Emojis 👤 🛠️ 🚢 ❤ 👤 🌐 📋 🐋 📦 🐕 🐈 🇬🇧 🇩🇪 ⌨ ℹ️ 📕 ➡ 🥚 🏍 🕮 🌩️ <font color="red">⚠</font> 🚀 🔑 🔄 🗣 ️🎧 ⏪
+Emojis 👤 🛠️ 🚢 ❤ 👤 🌐 📋 🐋 📦 🐕 🐈 🇬🇧 🇩🇪 ⌨ ℹ️ 📕 ➡ 🥚 🏍 🕮 🌩️ <font color="red">⚠</font> 🚀 🔑 🔄 🗣 ️🎧 ⏪🫠 🥹
 
 <br/>
 

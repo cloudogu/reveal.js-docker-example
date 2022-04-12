@@ -381,3 +381,92 @@ html.print-pdf .printOnly {
 .column {
   flex: 1;
 }
+
+/* Increase images on hover */
+.zoom2x {
+  transition: transform .2s; /* Animation */
+}
+
+.zoom2x:hover {
+  transform: scale(2);
+}
+.zoom1-5x {
+  transition: transform .2s; /* Animation */
+}
+
+.zoom1-5x:hover {
+  transform: scale(1.5);
+}
+
+/* tooltips */
+.tooltip-bellow .tooltip-bellow-text {
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  text-align: center;
+  padding: 5px 5px;
+  border-radius: 5px;
+
+  /* Position of text */
+  position: absolute;
+  z-index: 1;
+  top: 125%;
+  left: 0;
+
+  /* Fade in */
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.tooltip-bellow:hover .tooltip-bellow-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip-right .tooltip-right-text {
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  text-align: center;
+  padding: 5px 5px;
+  border-radius: 5px;
+
+  /* Position of text */
+  position: absolute;
+  z-index: 1;
+  left: 100%;
+  top: 0;
+
+  /* Fade in */
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.tooltip-right:hover .tooltip-right-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip-left .tooltip-left-text {
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  text-align: center;
+  padding: 5px 5px;
+  border-radius: 5px;
+
+  /* Position of text */
+  position: absolute;
+  z-index: 1;
+  right: 100%;
+  top: 0;
+
+  /* Fade in */
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.tooltip-left:hover .tooltip-left-text {
+  visibility: visible;
+  opacity: 1;
+}
