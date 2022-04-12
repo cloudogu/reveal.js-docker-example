@@ -16,9 +16,15 @@ Image via Markdown
 <img src="dist/theme/images/logo1.png" class="floatLeft" width=20% />
 <img src="dist/theme/images/logo1.png" class="floatRight" width=20% />
 The images are floating right and left of this text via css
-The image bellow is loaded lazily
 <br/>
-<img data-src="dist/theme/images/logo3.png" width=20% />
+<br/>
+
+The image bellow is loaded lazily. It also increases on hover and displays a tooltip
+
+<a class="tooltip-bellow">
+  <img data-src="dist/theme/images/logo3.png" width="9%" class="zoom1-5x"/>
+  <span class="tooltip-bellow-text">tooltip</span>
+</a>
 
 
 
