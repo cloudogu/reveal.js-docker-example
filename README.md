@@ -1,8 +1,7 @@
 ![](https://cloudogu.com/assets/blog/2019/revealJS-711db5dd3e495fe26dda7ad44104542b1fceb456c11700a773a2f158bf2c8251.png)
 
 # reveal.js-docker-example
-[![Build Status](https://oss.cloudogu.com/jenkins/buildStatus/icon?job=cloudogu-github%2Freveal.js-docker-example%2Fmaster)](https://oss.cloudogu.com/jenkins/blue/organizations/jenkins/cloudogu-github%2Freveal.js-docker-example/branches/)
-[![](https://img.shields.io/docker/image-size/cloudogu/reveal.js-example)](https://hub.docker.com/r/cloudogu/reveal.js-example)
+[![Build Status](https://oss.cloudogu.com/jenkins/buildStatus/icon?job=cloudogu-github%2Freveal.js-docker-example%2Fmain)](https://oss.cloudogu.com/jenkins/blue/organizations/jenkins/cloudogu-github%2Freveal.js-docker-example/branches/) [![](https://img.shields.io/docker/image-size/cloudogu/reveal.js-example)](https://hub.docker.com/r/cloudogu/reveal.js-example)
 
 Advanced example of [cloudogu/reveal.js-docker](https://github.com/cloudogu/reveal.js-docker), 
 providing easy to use, opinionated reveal.js web apps - web-based slides/presentations.
