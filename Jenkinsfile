@@ -64,12 +64,19 @@ node('docker') {
         stage('Build') {
             writeVersionNameToIntroSlide(versionName, introSlidePath)
             image = docker.build imageName
+
+            // Extract rendered reveal webapp from container
+            sh "tempContainer=\$(docker create ${image.id}) && " +
+                "docker cp \${tempContainer}:/reveal ${packagePath} && " +
+                "docker rm \${tempContainer}"
         }
 
         stage('Print PDF & Package WebApp') {
             String pdfPath = "${packagePath}/${pdfName}"
-            printPdfAndPackageWebapp image, pdfName, packagePath
-            archiveArtifacts pdfPath
+            printPdf pdfPath
+            // Avoid "ERROR: No artifacts found that match the file pattern " by using *.
+            // Has the risk of archiving other PDFs that might be there
+            archiveArtifacts "${packagePath}/*.pdf"
             
             // Make world readable (useful when accessing from docker)
             sh "chmod og+r '${pdfPath}'"
@@ -79,8 +86,6 @@ node('docker') {
             sh "mkdir -p ${packagePath}/pdf/ pdf"
             sh "mv '${pdfPath}' '${packagePath}/${finalPdfPath}'"
             sh "cp '${packagePath}/${finalPdfPath}' '${finalPdfPath}'"
-            // Build image again, so PDF is added
-            image = docker.build imageName
         }
 
         stage('Deploy GH Pages') {
@@ -154,27 +159,8 @@ void writeVersionNameToIntroSlide(String versionName, String introSlidePath) {
     sh "mv $filteredIntro $introSlidePath"
 }
 
-void printPdfAndPackageWebapp(def image, String pdfName, String distPath) {
-    Docker docker = new Docker(this)
-
-    image.withRun("-v ${WORKSPACE}:/workspace -w /workspace") { revealContainer ->
-
-        // Extract rendered reveal webapp from container for further processing
-        sh "docker cp ${revealContainer.id}:/reveal '${distPath}'"
-
-        def revealIp = docker.findIp(revealContainer)
-
-        docker.image(headlessChromeImage)
-        // Chromium writes to $HOME/local, so we need an entry in /etc/pwd for the current user
-                .mountJenkinsUser()
-        // Try to avoid OOM for larger presentations by setting larger shared memory
-                .inside("--shm-size=4G") {
-                    // If more flags should ever be necessary: https://peter.sh/experiments/chromium-command-line-switches
-                    sh "/usr/bin/google-chrome-unstable --headless --no-sandbox --disable-gpu --disable-web-security " +
-                            "--print-to-pdf='${distPath}/${pdfName}' --run-all-compositor-stages-before-draw --virtual-time-budget=10000 " +
-                            "http://${revealIp}:8080/?print-pdf"
-                }
-    }
+void printPdf(String pdfPath) {
+    sh (returnStdout: true, script: "COMPRESS=true ./printPdf.sh | xargs -I{} mv {} '${pdfPath}'").trim()
 }
 
 void deployToKubernetes(String dockerRegistry, String dockerRegistryCredentials, String kubeconfigCredentials, image) {

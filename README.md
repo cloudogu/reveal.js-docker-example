@@ -30,7 +30,20 @@ Provides
   * Presentation is served at http://localhost:8080
   * For demo purposes have a look at the Image built by this repo:  
     `docker run --rm -p 8080:8080 cloudogu/reveal.js-example` 
-* a [script for printing pdf locally](printPdf.sh)
+* a [script for printing pdf locally](printPdf.sh)  
+   * You can enable (lossy but effective, compresses by factor 5 to 10 😱) compression using an env var, e.g. like so
+  ```shell
+  COMPRESS=true ./printPdf.sh
+  ```
+  * If you're optimizing your PDF
+    * Start by viewing the PDF web-view, e.g. `http://localhost:8000/?print-pdf`
+    * Still, sometimes there are slight differences to the acutal PDF.  
+      Here, you might want to use hot reloading, with a PDF-viewer like okular and this command 
+  ```shell
+  ./printPdf.sh | xargs -I{} mv {} my.pdf
+  # You could automate PDF generation using https://github.com/Qard/onchange
+  onchange "docs/slides/*" -- ./printPdf.sh | xargs -I{} mv {} my.pdf 
+  ```
 * [Kubernetes Resources](k8s.yaml) for running the Docker Image on K8s securely
 * a [maven POM](pom.xml) for deploying the presentation as a maven site into a Raw Nexus Repository and finally 
 * a [Jenkins continuous delivery pipeline](Jenkinsfile) that showcases how to deploy 
