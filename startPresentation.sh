@@ -27,6 +27,11 @@ function main() {
       $([[ -d plugin ]] && for dir in plugin/*/; do echo "-v $(pwd)/${dir}:/reveal/${dir}"; done) \
       -e TITLE="$(grep -r 'TITLE' Dockerfile | sed "s/.*TITLE='\(.*\)'.*/\1/")" \
       -e THEME_CSS="$(grep -r 'THEME_CSS' Dockerfile | sed "s/.*THEME_CSS='\(.*\)'.*/\1/")" \
+      -e WIDTH="$(grep -r 'WIDTH' Dockerfile | sed "s/.*WIDTH='\(.*\)'.*/\1/")" \
+      -e HEIGHT="$(grep -r 'HEIGHT' Dockerfile | sed "s/.*HEIGHT='\(.*\)'.*/\1/")" \
+      -e MARGIN="$(grep -r 'MARGIN' Dockerfile | sed "s/.*MARGIN='\(.*\)'.*/\1/")" \
+      -e MIN_SCALE="$(grep -r 'MIN_SCALE' Dockerfile | sed "s/.*MIN_SCALE='\(.*\)'.*/\1/")" \
+      -e MAX_SCALE="$(grep -r 'MAX_SCALE' Dockerfile | sed "s/.*MAX_SCALE='\(.*\)'.*/\1/")" \
       -e ADDITIONAL_PLUGINS="$(grep -r 'ADDITIONAL_PLUGINS' Dockerfile | sed "s/.*ADDITIONAL_PLUGINS='\(.*\)'.*/\1/")" \
       -e ADDITIONAL_SCRIPT="$(grep -r 'ADDITIONAL_SCRIPT' Dockerfile | sed "s/.*ADDITIONAL_SCRIPT='\(.*\)'.*/\1/")" \
       ${DOCKER_ARGS} \
