@@ -24,8 +24,6 @@ node('docker') {
     def introSlidePath = 'docs/slides/01-intro.md'
 
     // Build image versions
-    // When updating, also update printPdf.sh
-    headlessChromeImage = 'yukinying/chrome-headless-browser:96.0.4662.6'
     String mavenVersion = "3.8.3-openjdk-17-slim"
     
     // Params for Nexus deployment
@@ -126,7 +124,6 @@ node('docker') {
     mailIfStatusChanged(git.commitAuthorEmail)
 }
 
-String headlessChromeImage
 
 String createPdfName(boolean includeDate = true) {
     String title = sh (returnStdout: true, script: 'grep -r \'TITLE\' Dockerfile | sed "s/.*TITLE=\'\\(.*\\)\'.*/\\1/" ').trim()

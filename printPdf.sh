@@ -4,7 +4,7 @@ COMPRESS=${COMPRESS:-'false'}
 
 set -o errexit -o nounset -o pipefail
 
-PRINTING_IMAGE='arachnysdocker/athenapdf:2.16.0'
+PRINTING_IMAGE='ghcr.io/puppeteer/puppeteer:22'
 # For compression
 GHOSTSCRIPT_IMAGE='minidocks/ghostscript:9'
 
@@ -19,10 +19,24 @@ sleep 1
 
 rm "${pdf}" || true
 
-# When images are not printed, increase --delay
-docker run --rm --shm-size=4G ${PRINTING_IMAGE} \
-  athenapdf --delay 2000 --stdout "http://${address}:8080/?print-pdf" \
-  > "${pdf}"
+# See https://pptr.dev/guides/docker, https://pptr.dev/guides/pdf-generation
+docker run -i --init --cap-add=SYS_ADMIN --rm -v /tmp:/tmp ${PRINTING_IMAGE} node -e "
+const puppeteer = require('puppeteer');
+(async () => {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto('http://${address}:8080/?view=print', { waitUntil: 'networkidle2' });
+    await page.pdf({ path: '${pdf}', width: '1331px', height: '727px' });
+    await browser.close();
+})();"
+
+# Puppeteer runs as it's own user and therefore the PDF has wrong owner
+# Correct this the hard way 
+docker run --rm -u0 -v /tmp:/tmp ${PRINTING_IMAGE} chown "$(id -u):$(id -g)" "${pdf}"
+# Are there any alternatives?
+# Changing ownership in puppeteer is not possible, because unpriv puppeteer user is not allowed to change ownership 
+# Running puppeteer 
+# Running puppeteer as root is worse, because chrome would have to run without sandbox, which is bad for security
 
 if [[ $COMPRESS == "true" ]]; then
   # Compress defensively, using best quality PDFSETTING printer.
