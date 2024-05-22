@@ -21,9 +21,9 @@ The images are floating right and left of this text via css
 
 The image bellow is loaded lazily. It also increases on hover and displays a tooltip
 
-<a class="tooltip-bellow">
+<a class="tooltip-right">
   <img data-src="dist/theme/images/logo3.png" width="9%" class="zoom1-5x"/>
-  <span class="tooltip-bellow-text">tooltip</span>
+  <span class="tooltip-right-text" style="left:120%">tooltip</span>
 </a>
 
 
@@ -31,10 +31,14 @@ The image bellow is loaded lazily. It also increases on hover and displays a too
 ### Font
 <!-- .slide: id="font" -->
 
-* Normal
-* <font color="red">red</font>  
-  Line Break after two empty blanks
-* <font size="1">Smaller text</font>
+Normal
+
+<font color="red">red</font>  
+Line Break after two empty blanks
+
+<font size="1">Absolute smaller text</font> 
+
+Relative smaller text <!-- .element: style="font-size: 40%" -->
 
 
 

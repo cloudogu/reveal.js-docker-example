@@ -1,3 +1,4 @@
+<!-- .slide: style="font-size: 90%"  -->
 ## This slide is not printed
 
 Because of `excludeLocation="print-pdf"` in `index.html`.
