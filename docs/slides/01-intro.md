@@ -1,3 +1,19 @@
+<style>
+/* You can optimize the font size of your presentation inline like so: */
+  .reveal {
+    font-size: 45px
+  }
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  /* Save some space on the slides */
+  margin: 0 0 20px 0;
+}
+</style>
+
 <!-- .slide: class="title"  -->
 <!-- .slide: data-background-image="dist/theme/images/title-black.svg"  -->
 <h2>
@@ -25,6 +41,7 @@ Write your slides in [GitHub-flavored markdown](https://guides.github.com/featur
 
 
 
+<!-- .slide: style="font-size: 90%"  -->
 ## Hotkeys
 
 * `S`: show Speaker Notes 
@@ -32,7 +49,8 @@ Write your slides in [GitHub-flavored markdown](https://guides.github.com/featur
 * `Esc`: show slide overview ("grid")
 * Cursors: Navigation (on slides "grid")
 * `Space`: next slide
-* `,`: toggle presenter Mode (➡ becomes next slide - helpful for some presenters)
+* `,`: toggle presenter Mode  
+   ➡ key becomes next slide (helpful for some presenters)
 * `Ctrl` + `Shift` + `F`: Search slides
 * `Ctrl` + `Alt` + Click: Zoom
 

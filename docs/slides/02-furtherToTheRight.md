@@ -31,10 +31,14 @@ The image bellow is loaded lazily. It also increases on hover and displays a too
 ### Font
 <!-- .slide: id="font" -->
 
-* Normal
-* <font color="red">red</font>  
-  Line Break after two empty blanks
-* <font size="1">Smaller text</font>
+Normal
+
+<font color="red">red</font>  
+Line Break after two empty blanks
+
+<font size="1">Absolute smaller text</font> 
+
+Relative smaller text <!-- .element: style="font-size: 40%" -->
 
 
 
