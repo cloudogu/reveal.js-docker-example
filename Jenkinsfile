@@ -39,7 +39,7 @@ node('docker') {
     
     // Params for GitHub pages deployment
     String ghPageCredentials = 'cesmarvin'
-    
+
     Git git = new Git(this, ghPageCredentials)
     Docker docker = new Docker(this)
     Maven mvn = new MavenInDocker(this, mavenVersion)
@@ -65,8 +65,8 @@ node('docker') {
 
             // Extract rendered reveal webapp from container
             sh "tempContainer=\$(docker create ${image.id}) && " +
-                "docker cp \${tempContainer}:/reveal ${packagePath} && " +
-                "docker rm \${tempContainer}"
+                    "docker cp \${tempContainer}:/reveal ${packagePath} && " +
+                    "docker rm \${tempContainer}"
         }
 
         stage('Print PDF & Package WebApp') {
@@ -75,10 +75,10 @@ node('docker') {
             // Avoid "ERROR: No artifacts found that match the file pattern " by using *.
             // Has the risk of archiving other PDFs that might be there
             archiveArtifacts "${packagePath}/*.pdf"
-            
+
             // Make world readable (useful when accessing from docker)
             sh "chmod og+r '${pdfPath}'"
-            
+
             // Use a constant name for the PDF for easier URLs, for deploying
             String finalPdfPath = "pdf/${createPdfName(false)}"
             sh "mkdir -p ${packagePath}/pdf/ pdf"
@@ -124,10 +124,13 @@ node('docker') {
     mailIfStatusChanged(git.commitAuthorEmail)
 }
 
-
 String createPdfName(boolean includeDate = true) {
-    String title = sh (returnStdout: true, script: 'grep -r \'TITLE\' Dockerfile | sed "s/.*TITLE=\'\\(.*\\)\'.*/\\1/" ').trim()
-    String pdfName = '';
+    String forbiddenChars = "[\\\\/:*?\"<>|]"
+    String title = sh (returnStdout: true, script: 'grep -r \'TITLE\' Dockerfile | sed "s/.*TITLE=\'\\(.*\\)\'.*/\\1/" ')
+            .trim()
+            .replaceAll(forbiddenChars, '')
+
+    String pdfName = ''
     if (includeDate) {
         pdfName = "${new Date().format('yyyy-MM-dd')}-"
     }
