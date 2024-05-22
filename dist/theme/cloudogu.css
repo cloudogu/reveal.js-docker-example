@@ -301,6 +301,16 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   left: 1em;
 }
 
+.reveal .header-right {
+  position: absolute;
+  right: 1em;
+}
+
+.reveal .header-left {
+  position: absolute;
+  left: 1em;
+}
+
 .reveal section img.emoji {
   height: 1em;
   width: 1em;

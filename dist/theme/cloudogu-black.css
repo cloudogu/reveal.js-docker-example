@@ -314,6 +314,16 @@ li::before {content: "•"; color:#23A3DD;
   left: 1em;
 }
 
+.reveal .header-right {
+  position: absolute;
+  right: 1em;
+}
+
+.reveal .header-left {
+  position: absolute;
+  left: 1em;
+}
+
 .reveal section img.emoji {
   height: 1em;
   width: 1em;
