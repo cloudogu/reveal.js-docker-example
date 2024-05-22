@@ -31,7 +31,6 @@ node('docker') {
     String mavenArtifactId = "reveal.js-docker-example"
     String mavenSiteUrl = "https://ecosystem.cloudogu.com/nexus/content/sites/Cloudogu-Docs"
     
-    String imageBaseName = "cloudogu/reveal.js-example"
     // Params for Kubernetes deployment
     String dockerRegistry = ""
     String dockerRegistryCredentials = 'hub.docker.com-cesmarvin'
@@ -54,7 +53,7 @@ node('docker') {
         String pdfName = createPdfName()
 
         String versionName = createVersion(mvn)
-        String imageName = "${imageBaseName}:${versionName}"
+        String imageName = "${env.JOB_NAME}:${versionName}"
         String packagePath = 'target'
         forceDeployGhPages = Boolean.valueOf(params.forceDeployGhPages)
         def image
