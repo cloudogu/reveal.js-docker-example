@@ -6,7 +6,7 @@ set -o errexit -o nounset -o pipefail
 
 PRINTING_IMAGE='ghcr.io/puppeteer/puppeteer:22'
 # For compression
-GHOSTSCRIPT_IMAGE='minidocks/ghostscript:9'
+GHOSTSCRIPT_IMAGE='minidocks/ghostscript'
 
 pdf=$(mktemp --suffix=.pdf)
 pdfCompressed=${pdf//.pdf/.min.pdf}
