@@ -15,7 +15,7 @@
 </style>
 
 <!-- .slide: class="title"  -->
-<!-- .slide: data-background-image="dist/theme/images/title-black.svg"  -->
+<!-- .slide: data-background-image="images/title-black.svg"  -->
 <h2>
     <span class="title-accent">//</span> 
     Welcome
