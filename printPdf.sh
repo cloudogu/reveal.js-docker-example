@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 COMPRESS=${COMPRESS:-'false'}
-
+if [[ -n "${DEBUG}" ]]; then set -x; fi
 set -o errexit -o nounset -o pipefail
 
 PRINTING_IMAGE='ghcr.io/puppeteer/puppeteer:22'
@@ -11,7 +11,7 @@ GHOSTSCRIPT_IMAGE='minidocks/ghostscript'
 pdf=$(mktemp --suffix=.pdf)
 pdfCompressed=${pdf//.pdf/.min.pdf}
 
-image=$(docker build -q . )
+image=$(docker build -q . | tail -n 1)
 container=$(docker run --rm -d "$image")
 address=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "${container}")
 

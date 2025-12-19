@@ -159,7 +159,7 @@ void writeVersionNameToIntroSlide(String versionName, String introSlidePath) {
 }
 
 void printPdf(String pdfPath) {
-    sh (returnStdout: true, script: "COMPRESS=true ./printPdf.sh | xargs -I{} mv {} '${pdfPath}'").trim()
+    sh (returnStdout: true, script: "DEBUG=1 COMPRESS=true ./printPdf.sh | xargs -I{} mv {} '${pdfPath}'").trim()
 }
 
 void deployToKubernetes(String dockerRegistry, String dockerRegistryCredentials, String kubeconfigCredentials, image) {
