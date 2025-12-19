@@ -1,8 +1,11 @@
 #!groovy
 
 //Keep this version in sync with the one used in Maven.pom-->
-@Library('github.com/cloudogu/ces-build-lib@1.48.0')
+@Library('github.com/cloudogu/ces-build-lib@5.0.0')
 import com.cloudogu.ces.cesbuildlib.*
+
+String getTrivyVersion() { '0.68.2'}
+String getMavenVersion() { '3-eclipse-temurin-25-alpine'}
 
 node('docker') {
 
@@ -23,8 +26,6 @@ node('docker') {
 
     def introSlidePath = 'docs/slides/01-intro.md'
 
-    // Build image versions
-    String mavenVersion = "3.8.3-openjdk-17-slim"
 
     // Params for Nexus deployment
     String mavenGroupId = "com.cloudogu.slides"
@@ -68,22 +69,37 @@ node('docker') {
                     "docker rm \${tempContainer}"
         }
 
-        stage('Print PDF & Package WebApp') {
-            String pdfPath = "${packagePath}/${pdfName}"
-            printPdf pdfPath
-            // Avoid "ERROR: No artifacts found that match the file pattern " by using *.
-            // Has the risk of archiving other PDFs that might be there
-            archiveArtifacts "${packagePath}/*.pdf"
+        parallel(
+                'Scan image': {
+                    stage('Scan image') {
+                        Trivy trivy = new Trivy(this, trivyVersion)
+                        // Only unstable on critical
+                        trivy.scanImage(imageName)
+                        // Create report with all vulns
+                        trivy.scanImage(imageName, TrivySeverityLevel.ALL, TrivyScanStrategy.IGNORE)
+                        trivy.saveFormattedTrivyReport()
+                    }
+                },
 
-            // Make world readable (useful when accessing from docker)
-            sh "chmod og+r '${pdfPath}'"
+                'Print PDF & Package WebApp': {
+                    stage('Print PDF & Package WebApp') {
+                        String pdfPath = "${packagePath}/${pdfName}"
+                        printPdf pdfPath
+                        // Avoid "ERROR: No artifacts found that match the file pattern " by using *.
+                        // Has the risk of archiving other PDFs that might be there
+                        archiveArtifacts "${packagePath}/*.pdf"
 
-            // Use a constant name for the PDF for easier URLs, for deploying
-            String finalPdfPath = "pdf/${createPdfName(false)}"
-            sh "mkdir -p ${packagePath}/pdf/ pdf"
-            sh "mv '${pdfPath}' '${packagePath}/${finalPdfPath}'"
-            sh "cp '${packagePath}/${finalPdfPath}' '${finalPdfPath}'"
-        }
+                        // Make world readable (useful when accessing from docker)
+                        sh "chmod og+r '${pdfPath}'"
+
+                        // Use a constant name for the PDF for easier URLs, for deploying
+                        String finalPdfPath = "pdf/${createPdfName(false)}"
+                        sh "mkdir -p ${packagePath}/pdf/ pdf"
+                        sh "mv '${pdfPath}' '${packagePath}/${finalPdfPath}'"
+                        sh "cp '${packagePath}/${finalPdfPath}' '${finalPdfPath}'"
+                    }
+                }
+        )
 
         stage('Deploy GH Pages') {
 
