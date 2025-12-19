@@ -7,14 +7,14 @@ You can customize this by creating a `slides.html`!
 
 ### Images
 
-<!-- .slide: data-background-image="dist/theme/images/logo.png" data-background-size="50%" -->
+<!-- .slide: data-background-image="images/logo.png" data-background-size="50%" -->
 <!-- .slide: style="text-align: left;" -->
  
 Image via Markdown
-![image](dist/theme/images/logo1.png)
+![image](images/logo1.png)
 
-<img src="dist/theme/images/logo1.png" class="floatLeft" width=20% />
-<img src="dist/theme/images/logo1.png" class="floatRight" width=20% />
+<img src="images/logo3.svg" class="floatLeft" width="20%" />
+<img src="images/logo3.svg" class="floatRight" width="20%" />
 The images are floating right and left of this text via css
 <br/>
 <br/>
@@ -22,7 +22,7 @@ The images are floating right and left of this text via css
 The image bellow is loaded lazily. It also increases on hover and displays a tooltip
 
 <a class="tooltip-right">
-  <img data-src="dist/theme/images/logo3.png" width="9%" class="zoom1-5x"/>
+  <img data-src="images/logo1.png" width="9%" class="zoom1-5x"/>
   <span class="tooltip-right-text" style="left:120%">tooltip</span>
 </a>
 
@@ -80,3 +80,13 @@ This slide is hidden
 <h1>Animate</h1>
 <p> you can transition things like position, font-size, line-height, color, background-color, padding and margin.<br/>
 See <a href="https://revealjs.com/auto-animate/">docs</a>.</p>
+
+
+
+
+Full size video background <button class="navigate-next">👇️</button>
+
+
+
+<!-- .slide: data-autoplay data-background-video-loop data-background-video="https://user-images.githubusercontent.com/1824962/215204174-eadf180b-2a82-4273-8cbb-6e7c187267c6.mp4" data-autoplay -->
+
