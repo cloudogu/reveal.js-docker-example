@@ -11,6 +11,10 @@ COPY . /reveal
 RUN if [ -d /reveal/resources/ ]; then mv /reveal/resources/ /; fi
 RUN /scripts/templateIndexHtml
 
-FROM base
-ENV SKIP_TEMPLATING='true'
-COPY --from=aggregator --chown=nginx /reveal /reveal
+FROM nginxinc/nginx-unprivileged:1-alpine-slim
+#FROM ghcr.io/nginx/nginx-unprivileged:1-alpine no rate limits, but no slim. 53M instead of 17M unpacked 😐️
+COPY --from=aggregator --chown=nginx /reveal /usr/share/nginx/html
+
+# FROM base is also possible but not relying on a 3rd party image requires less trust
+# ENV SKIP_TEMPLATING='true'
+# COPY --from=aggregator --chown=nginx /reveal /reveal

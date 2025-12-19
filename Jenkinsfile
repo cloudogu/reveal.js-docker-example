@@ -25,17 +25,17 @@ node('docker') {
 
     // Build image versions
     String mavenVersion = "3.8.3-openjdk-17-slim"
-    
+
     // Params for Nexus deployment
     String mavenGroupId = "com.cloudogu.slides"
     String mavenArtifactId = "reveal.js-docker-example"
     String mavenSiteUrl = "https://ecosystem.cloudogu.com/nexus/content/sites/Cloudogu-Docs"
-    
+
     // Params for Kubernetes deployment
     String dockerRegistry = ""
     String dockerRegistryCredentials = 'hub.docker.com-cesmarvin'
     String kubeconfigCredentials = 'kubeconfig-oss-deployer'
-    
+
     // Params for GitHub pages deployment
     String ghPageCredentials = 'cesmarvin'
 
@@ -64,7 +64,7 @@ node('docker') {
 
             // Extract rendered reveal webapp from container
             sh "tempContainer=\$(docker create ${image.id}) && " +
-                    "docker cp \${tempContainer}:/reveal ${packagePath} && " +
+                    "docker cp \${tempContainer}:/usr/share/nginx/html ${packagePath} && " +
                     "docker rm \${tempContainer}"
         }
 
@@ -103,8 +103,8 @@ node('docker') {
                 ])
                 mvn.deploySiteToNexus(
                         "-Dgroup=${mavenGroupId} " +
-                        "-Dartifact=${mavenArtifactId} " + 
-                        "-DsiteUrl=${mavenSiteUrl} "
+                                "-Dartifact=${mavenArtifactId} " +
+                                "-DsiteUrl=${mavenSiteUrl} "
                 )
             } else {
                 echo "Skipping deployment to Nexus because parameter is set to false."
